@@ -1,0 +1,6 @@
+{
+  "base_url": "https://confluence.example.com",
+  "token": "your-personal-access-token",
+  "space": "INFRA",
+  "insecure": false
+}
