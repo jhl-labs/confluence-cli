@@ -21,7 +21,7 @@ jobs:
       - uses: actions/setup-go@v5
         with:
           go-version-file: go.mod
-          cache: true
+          cache: false
       - uses: github/codeql-action/init@v3
         with:
           languages: go

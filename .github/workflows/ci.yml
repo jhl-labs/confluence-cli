@@ -18,7 +18,7 @@ jobs:
       - uses: actions/setup-go@v5
         with:
           go-version-file: go.mod
-          cache: true
+          cache: false
       - name: gofmt
         run: |
           unformatted="$(gofmt -l .)"
@@ -48,7 +48,7 @@ jobs:
       - uses: actions/setup-go@v5
         with:
           go-version-file: go.mod
-          cache: true
+          cache: false
       - name: Build ${{ matrix.target.goos }}/${{ matrix.target.goarch }}
         env:
           GOOS: ${{ matrix.target.goos }}
