@@ -5,7 +5,10 @@ LDFLAGS := -s -w -X main.version=$(VERSION)
 # Platforms for `make dist`.
 PLATFORMS := linux/amd64 linux/arm64 darwin/amd64 darwin/arm64 windows/amd64
 
-.PHONY: build test vet fmt clean dist install
+.PHONY: build test vet fmt clean dist install skills
+
+# Flavors rendered for the docs/ skill preview.
+SKILL_FLAVORS := generic claude codex gemini opencode
 
 build:
 	go build -ldflags "$(LDFLAGS)" -o $(BINARY) .
@@ -36,6 +39,15 @@ dist:
 	done
 	@cd dist && (sha256sum * > SHA256SUMS 2>/dev/null || shasum -a 256 * > SHA256SUMS)
 	@echo "dist/ contents:" && ls -1 dist
+
+# Regenerate the skill markdown files previewed on the docs/ landing page.
+# Run this whenever the generate-skill output changes so the site stays in sync.
+skills: build
+	@mkdir -p docs/skills
+	@for fl in $(SKILL_FLAVORS); do \
+		arg=$$fl; [ "$$fl" = "generic" ] && arg=""; \
+		./$(BINARY) generate-skill $$arg --out "docs/skills/confluence-skill-$$fl.md" --force; \
+	done
 
 clean:
 	rm -rf $(BINARY) $(BINARY).exe dist/
