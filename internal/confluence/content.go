@@ -30,8 +30,10 @@ type Content struct {
 
 // Space is a Confluence space reference.
 type Space struct {
-	Key  string `json:"key,omitempty"`
-	Name string `json:"name,omitempty"`
+	Key      string   `json:"key,omitempty"`
+	Name     string   `json:"name,omitempty"`
+	Type     string   `json:"type,omitempty"`
+	Homepage *Content `json:"homepage,omitempty"`
 }
 
 // Version tracks the content revision number.

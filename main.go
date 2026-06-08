@@ -31,6 +31,18 @@ func main() {
 		err = runUpdate(args)
 	case "comment":
 		err = runComment(args)
+	case "spaces":
+		err = runSpaces(args)
+	case "tree":
+		err = runTree(args)
+	case "children":
+		err = runChildren(args)
+	case "move":
+		err = runMove(args)
+	case "labels":
+		err = runLabels(args)
+	case "delete":
+		err = runDelete(args)
 	case "generate-skill":
 		err = runGenerateSkill(args)
 	case "version", "-v", "--version":
@@ -58,9 +70,15 @@ Usage:
 Commands:
   search    Search pages with CQL or a text query
   get       Fetch a page by ID
-  create    Create a new page
+  create    Create a new page (use --parent to create a child)
   update    Update an existing page (auto-increments version)
   comment   Add a comment to a page
+  delete    Delete a page (asks for confirmation)
+  spaces    List spaces
+  tree      Print the page tree of a space or subtree
+  children  List the direct child pages of a page
+  move      Move / re-parent / promote / demote a page
+  labels    List, add, or remove labels on a page
   generate-skill  Write a confluence-skill.md for an AI agent
                   (flavors: claude, codex, gemini, opencode; none = generic)
   version   Print version

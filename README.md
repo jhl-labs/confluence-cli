@@ -38,9 +38,15 @@ Atlassian 공식 Remote MCP 서버(`mcp.atlassian.com`, Rovo MCP)는 **Confluenc
 
 - `confluence-cli search` : 키워드·제목·스페이스·CQL로 페이지 검색
 - `confluence-cli get` : 페이지 조회 (storage 본문 출력 옵션 포함)
-- `confluence-cli create` : 새 페이지 생성 (storage / wiki representation, 부모 지정)
+- `confluence-cli create` : 새 페이지 생성 (storage / wiki representation, `--parent`로 하위 페이지)
 - `confluence-cli update` : 기존 페이지 업데이트 (버전 자동 증가)
+- `confluence-cli delete` : 페이지 삭제 (확인 프롬프트, `--yes`로 생략)
 - `confluence-cli comment` : 페이지에 댓글 추가
+- `confluence-cli spaces` : 스페이스 목록 조회
+- `confluence-cli tree` : 스페이스/하위 트리의 페이지 계층 출력
+- `confluence-cli children` : 특정 페이지의 직속 하위 페이지 목록
+- `confluence-cli move` : 페이지 이동·재부모화 (승격/강등)
+- `confluence-cli labels` : 라벨 조회·추가·삭제
 - `confluence-cli generate-skill` : AI 에이전트용 `confluence-skill.md` 생성 (claude/codex/gemini/opencode/generic)
 
 계획 중 (로드맵 참고):
@@ -105,6 +111,28 @@ confluence-cli update --id 123456 --body-file updated.xhtml
 
 # 댓글
 confluence-cli comment --id 123456 --body "<p>LGTM</p>"
+
+# 스페이스 목록
+confluence-cli spaces --type global --output text
+
+# 페이지 트리 (스페이스 전체 또는 하위 트리)
+confluence-cli tree --space INFRA --depth 3 --output text
+confluence-cli tree --id 123456 --output text
+
+# 직속 하위 페이지 목록
+confluence-cli children --id 123456 --output text
+
+# 이동 / 승격·강등 (Server/DC는 ancestors 재부모화 방식)
+confluence-cli move --id 123456 --parent 654321   # 654321의 하위로 강등
+confluence-cli move --id 123456 --parent 111000   # 조부모로 승격
+
+# 라벨 (인자 없으면 현재 라벨 출력)
+confluence-cli labels --id 123456
+confluence-cli labels --id 123456 --add "docs,runbook" --remove "draft"
+
+# 삭제 (확인 후)
+confluence-cli delete --id 123456            # 확인 프롬프트
+confluence-cli delete --id 123456 --yes      # 무인 삭제
 
 # 에이전트용 스킬 문서 생성 (confluence-skill.md)
 confluence-cli generate-skill                 # 범용(generic)

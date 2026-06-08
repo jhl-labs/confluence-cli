@@ -209,6 +209,33 @@ confluence-cli update --id 123456 --body-file updated.xhtml
 confluence-cli comment --id 123456 --body "<p>LGTM</p>"
 ` + "```" + `
 
+### spaces / tree / children — navigate the hierarchy
+` + "```bash" + `
+confluence-cli spaces --type global                  # list spaces
+confluence-cli tree --space DOCS --depth 3            # page tree of a space
+confluence-cli tree --id 123456                       # subtree under a page
+confluence-cli children --id 123456                   # direct child pages
+` + "```" + `
+
+### move — re-parent / promote / demote a page
+` + "```bash" + `
+confluence-cli move --id 123456 --parent 654321       # demote under 654321
+confluence-cli move --id 123456 --parent 111000       # promote to a grandparent
+` + "```" + `
+Note: on Server/DC this re-parents via ancestors; moving to the very top level
+(no parent) is not supported via REST.
+
+### labels — organize pages
+` + "```bash" + `
+confluence-cli labels --id 123456                     # list labels
+confluence-cli labels --id 123456 --add "docs,runbook" --remove "draft"
+` + "```" + `
+
+### delete — remove a page
+` + "```bash" + `
+confluence-cli delete --id 123456 --yes               # skip the confirmation prompt
+` + "```" + `
+
 ## Body format (important)
 
 Confluence page bodies are **not Markdown**. They use Confluence's XHTML **storage format**.
