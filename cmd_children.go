@@ -7,7 +7,7 @@ import (
 )
 
 func runChildren(args []string) error {
-	fs := flag.NewFlagSet("children", flag.ExitOnError)
+	fs := flag.NewFlagSet("children", flag.ContinueOnError)
 	common, err := registerCommon(fs)
 	if err != nil {
 		return err

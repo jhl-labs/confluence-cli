@@ -8,7 +8,7 @@ import (
 )
 
 func runSearch(args []string) error {
-	fs := flag.NewFlagSet("search", flag.ExitOnError)
+	fs := flag.NewFlagSet("search", flag.ContinueOnError)
 	common, err := registerCommon(fs)
 	if err != nil {
 		return err

@@ -8,7 +8,7 @@ import (
 )
 
 func runLabels(args []string) error {
-	fs := flag.NewFlagSet("labels", flag.ExitOnError)
+	fs := flag.NewFlagSet("labels", flag.ContinueOnError)
 	common, err := registerCommon(fs)
 	if err != nil {
 		return err

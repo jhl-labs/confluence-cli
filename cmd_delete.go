@@ -10,7 +10,7 @@ import (
 )
 
 func runDelete(args []string) error {
-	fs := flag.NewFlagSet("delete", flag.ExitOnError)
+	fs := flag.NewFlagSet("delete", flag.ContinueOnError)
 	common, err := registerCommon(fs)
 	if err != nil {
 		return err

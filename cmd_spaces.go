@@ -7,7 +7,7 @@ import (
 )
 
 func runSpaces(args []string) error {
-	fs := flag.NewFlagSet("spaces", flag.ExitOnError)
+	fs := flag.NewFlagSet("spaces", flag.ContinueOnError)
 	common, err := registerCommon(fs)
 	if err != nil {
 		return err

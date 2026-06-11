@@ -7,7 +7,7 @@ import (
 )
 
 func runMove(args []string) error {
-	fs := flag.NewFlagSet("move", flag.ExitOnError)
+	fs := flag.NewFlagSet("move", flag.ContinueOnError)
 	common, err := registerCommon(fs)
 	if err != nil {
 		return err

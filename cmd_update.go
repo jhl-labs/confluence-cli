@@ -9,7 +9,7 @@ import (
 )
 
 func runUpdate(args []string) error {
-	fs := flag.NewFlagSet("update", flag.ExitOnError)
+	fs := flag.NewFlagSet("update", flag.ContinueOnError)
 	common, err := registerCommon(fs)
 	if err != nil {
 		return err

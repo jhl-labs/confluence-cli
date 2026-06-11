@@ -4,6 +4,11 @@
 /dist/
 *.exe
 
+# Coverage
+cover.out
+*.cover
+coverage.*
+
 # Local secrets / config
 .env
 *.local.json

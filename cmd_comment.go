@@ -7,7 +7,7 @@ import (
 )
 
 func runComment(args []string) error {
-	fs := flag.NewFlagSet("comment", flag.ExitOnError)
+	fs := flag.NewFlagSet("comment", flag.ContinueOnError)
 	common, err := registerCommon(fs)
 	if err != nil {
 		return err

@@ -17,7 +17,7 @@ type treeNode struct {
 }
 
 func runTree(args []string) error {
-	fs := flag.NewFlagSet("tree", flag.ExitOnError)
+	fs := flag.NewFlagSet("tree", flag.ContinueOnError)
 	common, err := registerCommon(fs)
 	if err != nil {
 		return err

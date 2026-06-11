@@ -9,7 +9,7 @@ import (
 )
 
 func runCreate(args []string) error {
-	fs := flag.NewFlagSet("create", flag.ExitOnError)
+	fs := flag.NewFlagSet("create", flag.ContinueOnError)
 	common, err := registerCommon(fs)
 	if err != nil {
 		return err

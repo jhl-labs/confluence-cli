@@ -30,7 +30,7 @@ func runGenerateSkill(args []string) error {
 		flavor, rest = args[0], args[1:]
 	}
 
-	fs := flag.NewFlagSet("generate-skill", flag.ExitOnError)
+	fs := flag.NewFlagSet("generate-skill", flag.ContinueOnError)
 	var (
 		out   = fs.String("out", "confluence-skill.md", "output file path")
 		toOut = fs.Bool("stdout", false, "write to stdout instead of a file")

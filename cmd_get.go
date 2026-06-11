@@ -7,7 +7,7 @@ import (
 )
 
 func runGet(args []string) error {
-	fs := flag.NewFlagSet("get", flag.ExitOnError)
+	fs := flag.NewFlagSet("get", flag.ContinueOnError)
 	common, err := registerCommon(fs)
 	if err != nil {
 		return err
