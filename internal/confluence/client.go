@@ -6,7 +6,6 @@ package confluence
 import (
 	"bytes"
 	"context"
-	"crypto/tls"
 	"encoding/base64"
 	"encoding/json"
 	"errors"
@@ -65,9 +64,6 @@ func New(cfg config.Config, timeout time.Duration) (*Client, error) {
 	}
 
 	transport := http.DefaultTransport.(*http.Transport).Clone()
-	if cfg.Insecure {
-		transport.TLSClientConfig = &tls.Config{InsecureSkipVerify: true}
-	}
 
 	return &Client{
 		baseURL:    cfg.BaseURL,
